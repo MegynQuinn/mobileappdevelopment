@@ -103,7 +103,7 @@ signup = () => {
        <TouchableOpacity
        style = {styles.userBtn}
       //onPress={() => this.signup()}
-      //onPress={() => this.props.navigation.navigate("Home")}
+       onPress={() => this.props.navigation.navigate("Home")}
        >
          <Text style = {styles.btnTxt}>Back to Login</Text>
        </TouchableOpacity>
