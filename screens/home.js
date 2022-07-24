@@ -28,14 +28,14 @@ class Login extends Component {
 
 login = async () => {
 
-    //Validation here...
+  
 
     return fetch("http://10.0.2.2:3333/api/1.0.0/login", {
         method: 'post',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(this.state)
+        body: JSON.stringify(this.state),
     })
     .then((response) => {
         if(response.status === 200){
@@ -48,7 +48,9 @@ login = async () => {
     })
     .then(async (responseJson) => {
             console.log(responseJson);
-            await AsyncStorage.setItem('@session_token', responseJson.token);
+            const responseJson1 = JSON.stringify(responseJson);
+            await AsyncStorage.setItem('@session_token', responseJson1);
+            console.log(responseJson)
             this.props.navigation.navigate("Landing");
     })
     .catch((error) => {
@@ -138,5 +140,3 @@ btnTxt: {
 });
 
 export default Login;
-
-
