@@ -28,7 +28,7 @@ class Signup extends Component {
 }
 
 signup = () => {
-    //Validation here...
+    
 
     return fetch("http://10.0.2.2:3333/api/1.0.0/user", {
         method: 'post',
@@ -41,14 +41,15 @@ signup = () => {
         if(response.status === 201){
             return response.json()
         }else if(response.status === 400){
-            throw 'Failed validation';
+            
+            throw response.json();
         }else{
             throw 'Something went wrong';
         }
     })
     .then((responseJson) => {
            console.log("User created with ID: ", responseJson);
-           this.props.navigation.navigate("Landing");
+           this.props.navigation.navigate("Home");
     })
     .catch((error) => {
         console.log(error);
@@ -103,7 +104,7 @@ signup = () => {
        <TouchableOpacity
        style = {styles.userBtn}
       //onPress={() => this.signup()}
-       onPress={() => this.props.navigation.navigate("Home")}
+      onPress={() => this.props.navigation.navigate("Home")}
        >
          <Text style = {styles.btnTxt}>Back to Login</Text>
        </TouchableOpacity>
@@ -159,5 +160,7 @@ btnTxt: {
 });
 
 export default Signup;
+
+
 
 
